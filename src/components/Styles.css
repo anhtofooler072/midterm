@@ -5,9 +5,8 @@
 }
 
 body {
-  font-family: "Montserrata", sans-serif;
+  font-family: "Montserrat", sans-serif;
   background-color: #f5f5f5;
-  padding: 20px;
 }
 
 /**============================================
@@ -16,9 +15,19 @@ body {
 .friendList {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 65%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  padding: 20px;
+  border: solid 1.5px #d0d0d084;
+  background-color: #4caf50;
+  border-radius: 5px;
+}
+.friendList::-webkit-scrollbar {
+  display: none;
 }
 .friendTag {
   display: flex;
@@ -35,6 +44,10 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
 }
+.friendTag:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 .friendTag .nameandMess {
   display: flex;
   flex-direction: column;
@@ -50,6 +63,7 @@ body {
   width: 100px;
   height: 100px;
   border: solid 3px #5f5f5f63;
+  object-fit: cover;
 }
 /**============================================
  *               SECTION CHATBOX
@@ -60,7 +74,8 @@ body {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
+  padding: 20px;
 }
 .chatBox {
   display: flex;
@@ -92,6 +107,11 @@ body {
   width: 100%;
   height: 600px;
   padding: 30px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.messBox::-webkit-scrollbar {
+  display: none;
 }
 .messBoxNull {
   display: flex;
@@ -116,6 +136,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .messTag p {
   margin-left: 10px;

@@ -6,7 +6,9 @@ import './Styles.css'
 export default function Homepage() {
     /**------------------------------------------------------------------------
      *                           SECTION STATES
-     *------------------------------------------------------------------------**/
+    *------------------------------------------------------------------------**/
+
+    localStorage.clear()
     const [data, setData] = useState(JSON.parse(localStorage.getItem('chat')) || [
         {
             id: 1,
@@ -29,6 +31,7 @@ export default function Homepage() {
                 timestamp: '2021-10-01D12:00:03T',
                 fromtheir: false
             }],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
             active: true
         },
         {
@@ -53,6 +56,7 @@ export default function Homepage() {
                 fromtheir: false
             }
             ],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
             active: false
         },
         {
@@ -78,6 +82,7 @@ export default function Homepage() {
                     fromtheir: false
                 }
             ],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
             active: false
         },
         {
@@ -99,6 +104,51 @@ export default function Homepage() {
                     fromtheir: true
                 }
             ],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
+            active: false
+        },
+        {
+            id: 5,
+            name: 'Zuck',
+            img: 'https://th.bing.com/th/id/OIP.BaE5xUtwP1idgdWP3CNx3QHaE5?rs=1&pid=ImgDetMain',
+            message: [
+                {
+                    mess: 'hello world',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: true
+                }, {
+                    mess: 'hi there',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: false
+                }, {
+                    mess: 'how are you?',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: true
+                }
+            ],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
+            active: true
+        },
+        {
+            id: 6,
+            name: 'Musk-chan',
+            img: 'https://th.bing.com/th/id/R.0ddc26f8c2c1538fced48b04d0cba728?rik=XEtfp77qGMN79A&pid=ImgRaw&r=0',
+            message: [
+                {
+                    mess: 'hello world',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: true
+                }, {
+                    mess: 'hi there',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: false
+                }, {
+                    mess: 'how are you?',
+                    timestamp: '2021-10-01D12:00:03T',
+                    fromtheir: true
+                }
+            ],
+            latestInboxTime: "2024-02-18T09:36:07.108Z",
             active: false
         }
     ])
@@ -117,9 +167,13 @@ export default function Homepage() {
     }
     const openChat = (e, item) => {
         setChatName(item)
-        console.log(chatName)
     }
-    const sendMessage = () => {
+    const sendMessage = (e) => {
+        e.preventDefault()
+        if (type === '') {
+            alert('Please type something')
+            return
+        }
         let newMess = {
             mess: type,
             timestamp: new Date().toISOString(),
@@ -127,9 +181,19 @@ export default function Homepage() {
         }
         let newChat = chatName
         newChat.message.push(newMess)
+        newChat.latestInboxTime = newMess.timestamp
         setChatName(newChat)
         setType('')
-        console.log(chatName)
+        setData(data.map((item) => {
+            if (item.id === chatName.id) {
+                return chatName
+            }
+            return item
+        }))
+        setData(data.sort((a, b) => {
+            return new Date(b.latestInboxTime) - new Date(a.latestInboxTime)
+        }))
+        console.log(data)
         localStorage.setItem('chat', JSON.stringify(data))
     }
 
@@ -162,8 +226,8 @@ export default function Homepage() {
 
     /**------------------------------------------------------------------------
      * todo                             TODO SECTION
-     * 1. sort the message by timestamp
-     * 2. add the message to the data.message (update to local storage)
+     * ! 1. sort the message by timestamp
+     * 2. add the message to the data.message (update to local storage) 
      *------------------------------------------------------------------------**/
 
     const renderChat = chatName.message.map((item) => {
@@ -207,15 +271,15 @@ export default function Homepage() {
                     <div className="messBox">
                         {renderChat}
                     </div>
-                    <div className="typeBox">
+                    <form className="typeBox">
                         <input type="text" onChange={handleType} placeholder='write a message' value={type} />
-                        <button onClick={sendMessage}>
+                        <button onClick={sendMessage} type='submit'>
                             <FaPaperPlane />
                             <span style={{
                                 marginLeft: '5px'
                             }}>Send</span>
                         </button>
-                    </div>
+                    </form>
                 </div>
             }
         </div>
