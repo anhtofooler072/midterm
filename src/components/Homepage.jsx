@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaPaperPlane } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
+import { BsChatLeftFill } from "react-icons/bs";
 import './Styles.css'
 
 export default function Homepage() {
@@ -263,10 +264,16 @@ export default function Homepage() {
                 {renderData}
             </div>
             {chatName.message.length === 0 ?
-                <div className='chatBox'>
+                <div className='chatBoxNull'>
                     <div className="messBoxNull">
                         <span>
-                            Start a conversation
+                            <h2>Start a conversation</h2>
+                            <br />
+                            <BsChatLeftFill style={{
+                                marginBottom: '10px',
+                            }} />
+                            <br />
+                            <p>Click on a friend to start a conversation</p>
                         </span>
                     </div>
                 </div>
