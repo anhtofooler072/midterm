@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaPaperPlane } from "react-icons/fa";
 import { FaCheckCircle } from "react-icons/fa";
 import './Styles.css'
@@ -171,7 +173,15 @@ export default function Homepage() {
     const sendMessage = (e) => {
         e.preventDefault()
         if (type === '') {
-            alert('Please type something')
+            toast.error('💬 Please enter a message to send', {
+                position: "top-right",
+                autoClose: 800,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
             return
         }
         let newMess = {
@@ -280,6 +290,7 @@ export default function Homepage() {
                             }}>Send</span>
                         </button>
                     </form>
+                    <ToastContainer />
                 </div>
             }
         </div>
