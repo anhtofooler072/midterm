@@ -11,7 +11,7 @@ export default function Homepage() {
      *                           SECTION STATES
     *------------------------------------------------------------------------**/
 
-    // localStorage.clear()
+    localStorage.clear()
     const [data, setData] = useState(JSON.parse(localStorage.getItem('chat')) || [
         {
             id: 1,
@@ -35,7 +35,8 @@ export default function Homepage() {
                 fromtheir: false
             }],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: true
+            active: true,
+            lastActive: "2024-02-18T09:36:07.108Z"
         },
         {
             id: 2,
@@ -60,7 +61,8 @@ export default function Homepage() {
             }
             ],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: false
+            active: false,
+            lastActive: "2024-02-18T09:36:07.108Z"
         },
         {
             id: 3,
@@ -86,7 +88,8 @@ export default function Homepage() {
                 }
             ],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: false
+            active: false,
+            lastActive: "2024-02-18T09:36:07.108Z"
         },
         {
             id: 4,
@@ -108,7 +111,8 @@ export default function Homepage() {
                 }
             ],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: false
+            active: false,
+            lastActive: "2024-02-18T09:36:07.108Z"
         },
         {
             id: 5,
@@ -130,7 +134,8 @@ export default function Homepage() {
                 }
             ],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: true
+            active: true,
+            lastActive: "2024-02-12T09:36:07.108Z"
         },
         {
             id: 6,
@@ -152,7 +157,8 @@ export default function Homepage() {
                 }
             ],
             latestInboxTime: "2024-02-18T09:36:07.108Z",
-            active: false
+            active: false,
+            lastActive: "2024-02-18T18:36:07.108Z"
         }
     ])
     const [chatName, setChatName] = useState({ message: [], })
@@ -217,18 +223,32 @@ export default function Homepage() {
     const renderData = data.map((item) => {
         let owner = item.message[item.message.length - 1].fromtheir
         let color = owner ? 'black' : 'slategray'
+        let lastActive = new Date(item.lastActive)
         return (
             <div key={item.id} className='friendTag' onClick={(e) => { openChat(e, item) }}>
-                <img src={item.img} alt={item.name} />
-                <div className="nameandMess">
-                    <h2>{item.name}</h2>
-                    <p style={{
-                        color: color
-                    }}>{
-                            item.message[item.message.length - 1].mess
-                        }</p>
+                <div className="infoAva">
+                    <img src={item.img} alt={item.name} />
+                    <div className="nameandMess">
+                        <h2>{item.name}</h2>
+                        <p style={{
+                            color: color
+                        }}>{
+                                item.message[item.message.length - 1].mess
+                            }</p>
+                    </div>
                 </div>
-                <span>{item.timestamp}</span>
+                {item.active
+                    ?
+                    <FaCheckCircle style={{ color: 'green' }} />
+                    :
+                    <p style={{
+                        color: 'slategray',
+                        fontSize: '12px'
+                    }}>
+                        {lastActive.getUTCHours()}:{lastActive.getUTCMinutes()}
+                        {lastActive.getUTCHours() > 12 ? ' PM' : ' AM'}
+                    </p>
+                }
             </div>
         )
     }
@@ -283,7 +303,14 @@ export default function Homepage() {
                         <h2>{chatName.name}</h2>
                         {chatName.active ? <FaCheckCircle style={{
                             color: 'green'
-                        }} /> : null}
+                        }} /> :
+                            <p style={{
+                                color: 'slategray',
+                                fontSize: '12px'
+                            }}>
+                                last active {new Date(chatName.lastActive).getUTCHours()}:{new Date(chatName.lastActive).getUTCMinutes()} {new Date(chatName.lastActive).getUTCHours() > 12 ? ' PM' : ' AM'}
+                            </p>
+                        }
                     </div>
                     <div className="messBox">
                         {renderChat}

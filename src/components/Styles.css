@@ -32,7 +32,7 @@ body {
 .friendTag {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
   padding: 20px 20px;
@@ -48,7 +48,7 @@ body {
   transform: scale(1.02);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.friendTag .nameandMess {
+.nameandMess {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,6 +57,14 @@ body {
   gap: 10px;
   padding: 10px 0;
   width: 50%;
+}
+.infoAva {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 80%;
 }
 .friendTag img {
   border-radius: 50%;
