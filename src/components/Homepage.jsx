@@ -8,7 +8,7 @@ export default function Homepage() {
      *                           SECTION STATES
     *------------------------------------------------------------------------**/
 
-    localStorage.clear()
+    // localStorage.clear()
     const [data, setData] = useState(JSON.parse(localStorage.getItem('chat')) || [
         {
             id: 1,
