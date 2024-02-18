@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrata", sans-serif;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/**============================================
+ *               FRIENDS LIST
+ *=============================================**/
+.friendList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 65%;
+}
+.friendTag {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px 20px;
+  margin-bottom: 20px;
+  gap: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.friendTag .nameandMess {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 10px;
+  gap: 10px;
+  padding: 10px 0;
+  width: 50%;
+}
+.friendTag img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: solid 3px #5f5f5f63;
+}
+/**============================================
+ *               SECTION CHATBOX
+ *=============================================**/
+.chatContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 90vh;
+}
+.chatBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  width: 85%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  border: solid 1.5px #d0d0d084;
+}
+.nameBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 100px;
+  border-bottom: 1.5px solid #d0d0d084;
+}
+.messBox {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start;
+  align-items: flex-start; */
+  width: 100%;
+  height: 600px;
+  padding: 30px;
+}
+.messBoxNull {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+  padding: 30px;
+}
+/* .messBox::-webkit-scrollbar {
+  width: 10px;
+} */
+.messTag {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.messTag img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.messTag p {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+.mymessTag {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.mymessTag p {
+  background-color: #4caf50;
+  color: #fff;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s linear;
+}
+.typeBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 0 30px;
+  border-top: 1.5px solid #d0d0d084;
+}
+.typeBox input {
+  width: 85%;
+  padding: 10px;
+  border: solid 1px #d0d0d0;
+  border-radius: 5px;
+  outline: none;
+}
+.typeBox input:focus {
+  border: solid 1px #4caf50;
+}
+.typeBox button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
