@@ -11,7 +11,7 @@ export default function Homepage() {
      *                           SECTION STATES
     *------------------------------------------------------------------------**/
 
-    localStorage.clear()
+    // localStorage.clear()
     const [data, setData] = useState(JSON.parse(localStorage.getItem('chat')) || [
         {
             id: 1,
@@ -229,7 +229,7 @@ export default function Homepage() {
                 <div className="infoAva">
                     <img src={item.img} alt={item.name} />
                     <div className="nameandMess">
-                        <h2>{item.name}</h2>
+                        <h3>{item.name}</h3>
                         <p style={{
                             color: color
                         }}>{
